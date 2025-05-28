@@ -9,7 +9,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.filters import Command
 
 load_dotenv(".env")
-token=getenv("telegram_token")
+token=getenv("TELEGRAM_TOKEN")
 bot=Bot(token=token,default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp=Dispatcher()
 @dp.message(Command("start"))
