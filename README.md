@@ -15,4 +15,5 @@ _Convert magnet links to direct download links instantly (Max 2GB support)_
 1. Send magnet link:  
    `magnet:?xt=urn:btih:EXAMPLEHASH123...`
    
-2. Bot replies with:  
+2. Bot replies with:
+   https://examplevideo.mp4
