@@ -17,4 +17,6 @@ jobs:
       - name: Run Bot
         run: python bot.py
         env:
-          TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+            TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+            email: ${{ secrets.EMAIL }}
+            passwd: ${{ secrets.PASSWORD }}
