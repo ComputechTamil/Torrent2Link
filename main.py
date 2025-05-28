@@ -11,7 +11,7 @@ load_dotenv(".env")
 email=os.environ["email"]
 passwd=os.environ["password"]
 Seedr=SeedrAPI(email=email,password=passwd)
-magnet_link=input("Paste the magnet link:")
+
 
 
 def get_link()->str:
@@ -25,7 +25,7 @@ def get_link()->str:
     #print(file_id)
     #it gives the all file info including file id using file id to use return url for normal downloading using get_file method["This method return dict of name,size,url"]
     return Seedr.get_file(file_id)["url"]
-def torrent2link(torrent,smart_mode=False):
+def torrent2link(magnet_link,smart_mode=False):
     """smart_mode=True delete the existing video then add a new torrent
        if not enough storage
        Default Off[smart_mode=False]"""
@@ -47,7 +47,7 @@ def torrent2link(torrent,smart_mode=False):
         print(get_link())
     else:
         print(add_result["result"])
-#test
-torrent2link(magnet_link,1)
+
 if __name__=="__main__":
-    torrent2link(sys.argv[1])
+    magnet_link=input("Paste the magnet link:")
+    torrent2link(magnet_link,1)
