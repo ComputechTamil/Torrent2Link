@@ -8,8 +8,8 @@ load_dotenv(".env")
 """Logged in """
 ##with open("login.json") as f:
 ##    credential=load(f)
-email=os.environ["email"]
-passwd=os.environ["password"]
+email=os.environ["SEEDR_EMAIL"]
+passwd=os.environ["SEEDR_PASSWORD"]
 Seedr=SeedrAPI(email=email,password=passwd)
 
 
