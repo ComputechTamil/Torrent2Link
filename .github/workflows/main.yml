@@ -16,7 +16,4 @@ jobs:
           pip install -r requirements.txt
       - name: Run Bot
         run: python bot.py
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          SEEDR_EMAIL: ${{ secrets.SEEDR_EMAIL }}
-          SEEDR_PASSWORD: ${{ secrets.SEEDR_PASSWORD }}
+       
