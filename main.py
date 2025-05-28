@@ -25,7 +25,7 @@ def get_link()->str:
     #print(file_id)
     #it gives the all file info including file id using file id to use return url for normal downloading using get_file method["This method return dict of name,size,url"]
     return Seedr.get_file(file_id)["url"]
-def torrent2link(magnet_link,smart_mode=False):
+def torrent2link(magnet_link,smart_mode=True):
     """smart_mode=True delete the existing video then add a new torrent
        if not enough storage
        Default Off[smart_mode=False]"""
