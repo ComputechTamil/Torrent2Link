@@ -44,10 +44,11 @@ def torrent2link(magnet_link,smart_mode=False):
         print(f"Succesfully added the following Torrent\n{add_result['title']}")
         print("Download the Video using the following link!")
         sleep(10)
-        print(get_link())
+        #print(get_link())
+        return get_link()
     else:
-        print(add_result["result"])
-
+        #print(add_result["result"])
+        return add_result["result"]
 if __name__=="__main__":
     magnet_link=input("Paste the magnet link:")
     torrent2link(magnet_link,1)
