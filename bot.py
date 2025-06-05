@@ -36,21 +36,32 @@ async def handle_magnet(message: Message):
             "⚠️ Please send a valid magnet link.\n\nExample:\n<code>magnet:?xt=urn:btih:123abc456def789...</code>",
             parse_mode="HTML")
         
-async def on_startup(bot: Bot):
+async def on_startup(app: web.Application):
     await bot.set_webhook("https://torrent2link.onrender.com/webhook")
 
 def main():
-    # Create aiohttp app
+    # Create aiohttp application
     app = web.Application()
     
     # Register webhook handler
-    webhook_handler = SimpleRequestHandler(dp, bot)
+    webhook_handler = SimpleRequestHandler(
+        dispatcher=dp,
+        bot=bot,
+    )
     webhook_handler.register(app, path="/webhook")
     
-    # Configure startup
+    # Setup application
+    setup_application(app, dp, bot=bot)
+    
+    # Add startup callback
     app.on_startup.append(on_startup)
     
-    # Start server (Render REQUIRES port 10000)
+    # Add health check endpoint
+    async def health_check(request):
+        return web.Response(text="OK")
+    app.router.add_get("/health", health_check)
+    
+    # Run app (Render requires port 10000)
     web.run_app(app, host="0.0.0.0", port=10000)
 
 if __name__ == "__main__":
