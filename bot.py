@@ -33,8 +33,18 @@ async def handle_magnet(message: Message):
         await message.answer(
             "⚠️ Please send a valid magnet link.\n\nExample:\n<code>magnet:?xt=urn:btih:123abc456def789...</code>",
             parse_mode="HTML")
-async def main():
-    print("Bot is running...")
-    await dp.start_polling(bot)
-if __name__=="__main__":
-    asyncio.run(main())
+        
+async def on_startup(bot: Bot):
+    await bot.set_webhook(WEBHOOK_URL)  # WEBHOOK_URL = "https://your-render-service.onrender.com/webhook"
+
+def main():
+    app = web.Application()
+    webhook_requests_handler = SimpleRequestHandler(dp, bot)
+    webhook_requests_handler.register(app, path="/webhook")
+    setup_application(app, dp, bot=bot)
+    
+    app.on_startup.append(on_startup)
+    web.run_app(app, host="0.0.0.0", port=10000)  # Render requires port 10000
+
+if __name__ == "__main__":
+    main()
