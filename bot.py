@@ -37,16 +37,21 @@ async def handle_magnet(message: Message):
             parse_mode="HTML")
         
 async def on_startup(bot: Bot):
-     await bot.set_webhook("https://torrent2link.onrender.com/webhook")
+    await bot.set_webhook("https://torrent2link.onrender.com/webhook")
 
 def main():
+    # Create aiohttp app
     app = web.Application()
-    webhook_requests_handler = SimpleRequestHandler(dp, bot)
-    webhook_requests_handler.register(app, path="/webhook")
-    setup_application(app, dp, bot=bot)
     
+    # Register webhook handler
+    webhook_handler = SimpleRequestHandler(dp, bot)
+    webhook_handler.register(app, path="/webhook")
+    
+    # Configure startup
     app.on_startup.append(on_startup)
-    web.run_app(app, host="0.0.0.0", port=10000)  # Render requires port 10000
+    
+    # Start server (Render REQUIRES port 10000)
+    web.run_app(app, host="0.0.0.0", port=10000)
 
 if __name__ == "__main__":
     main()
