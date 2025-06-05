@@ -37,7 +37,7 @@ async def handle_magnet(message: Message):
             parse_mode="HTML")
         
 async def on_startup(bot: Bot):
-    await bot.set_webhook(WEBHOOK_URL)  # WEBHOOK_URL = "https://your-render-service.onrender.com/webhook"
+     await bot.set_webhook("https://torrent2link.onrender.com/webhook")
 
 def main():
     app = web.Application()
