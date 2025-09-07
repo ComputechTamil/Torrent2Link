@@ -1,5 +1,4 @@
 import asyncio,re
-from dotenv import load_dotenv
 from os import getenv
 from main import torrent2link
 from aiogram import Bot,Dispatcher
@@ -10,8 +9,7 @@ from aiohttp import web
 from aiogram.client.default import DefaultBotProperties
 from aiogram.filters import Command
 
-load_dotenv(".env")
-token="7733043091:AAGMiqkDRxKfwwFwjWHaMV6ew-dC5jy5rPk"
+token=getenv("TELEGRAM_TOKEN")
 bot=Bot(token=token,default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp=Dispatcher()
 @dp.message(Command("start"))
